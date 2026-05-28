@@ -89,6 +89,8 @@ h1,h2,h3,.cz{font-family:"Saira Condensed",sans-serif;font-weight:700;letter-spa
 .vswitch .vopt.active{background:linear-gradient(180deg,var(--brass-br),var(--brass));color:var(--night);box-shadow:inset 0 1px 0 #fff7}
 .vswitch .vopt:not(.active):hover{color:#fff;background:oklch(0.745 0.115 80 / .2)}
 @media(max-width:600px){.vswitch .vlab{display:none}.vswitch .vopt{font-size:.64rem;padding:.28rem .55rem}}
+.vswitch{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.vswitch.tuck{transform:translateX(-50%) translateY(-170%)}
 
 /* section scaffold */
 section{position:relative}
@@ -642,8 +644,8 @@ body{top:0 !important} body > .skiptranslate{display:none !important} .goog-te-b
 </footer>
 
 <script>
-const prog=document.getElementById('progress'),bar=document.getElementById('bar'),hero=document.querySelector('.hero');
-function onScroll(){const h=document.documentElement,sc=h.scrollTop,max=h.scrollHeight-h.clientHeight;prog.style.width=(max>0?(sc/max*100):0)+'%';if(sc>hero.offsetHeight-80)bar.classList.add('show');else bar.classList.remove('show');}
+const prog=document.getElementById('progress'),bar=document.getElementById('bar'),hero=document.querySelector('.hero'),vsw=document.querySelector('.vswitch');let lastY=0;
+function onScroll(){const h=document.documentElement,sc=h.scrollTop,max=h.scrollHeight-h.clientHeight;prog.style.width=(max>0?(sc/max*100):0)+'%';if(sc>hero.offsetHeight-80)bar.classList.add('show');else bar.classList.remove('show');if(vsw){if(sc>150&&sc>lastY)vsw.classList.add('tuck');else vsw.classList.remove('tuck');}lastY=sc;}
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px',threshold:0.12});
 document.querySelectorAll('[data-rv]').forEach(el=>{if(el.closest('.hero')){const d=el.style.getPropertyValue('--d')||0;el.style.transitionDelay=(d*0.12)+'s';requestAnimationFrame(()=>el.classList.add('in'));}else io.observe(el);});

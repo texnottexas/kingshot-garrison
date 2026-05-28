@@ -361,8 +361,28 @@ figure.shot figcaption{font-family:"Cinzel";font-size:.78rem;letter-spacing:.04e
 .reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1.4rem}
 .reasons .r{border-top:2px solid oklch(0.74 0.13 73 / .4);padding-top:.9rem}
 .reasons .r h4{font-family:"Cinzel";font-size:.96rem;color:var(--gold);letter-spacing:.04em;margin-bottom:.35rem}
-.reasons .r p{color:oklch(0.82 0.02 75);font-size:.94rem}
+.reasons .r p{color:var(--ink-soft);font-size:.94rem}
+.reasons .r{border-top-color:var(--parch-edge)}
 @media(max-width:760px){.reasons{grid-template-columns:1fr}}
+/* garrison role cards + ratio bars (Codex chapter II) */
+.rolecards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:.4rem}
+@media(max-width:720px){.rolecards{grid-template-columns:1fr}}
+.rolecard{border-radius:12px;overflow:hidden;border:1px solid var(--parch-edge);background:#fff7;text-align:center;padding-bottom:1rem}
+.rolecard .cap{height:5px}
+.rolecard.inf .cap{background:var(--inf)} .rolecard.cav .cap{background:var(--cav)} .rolecard.arc .cap{background:var(--arc)}
+.rolecard img{width:100%;height:190px;object-fit:contain;padding:.7rem;background:linear-gradient(180deg,#fff8,oklch(0.9 0.02 250 / .4))}
+.rolecard h4{font-family:"Cinzel";font-size:1.15rem;margin:.5rem 0 .2rem;letter-spacing:.02em}
+.rolecard.inf h4{color:var(--inf)} .rolecard.cav h4{color:var(--cav)} .rolecard.arc h4{color:var(--arc)}
+.rolecard p{color:var(--ink-soft);font-size:.93rem;padding:0 1rem;margin:0}
+.ratiowrap{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media(max-width:680px){.ratiowrap{grid-template-columns:1fr}}
+.ratiobox{padding:1.1rem 1.2rem;border-radius:12px;border:1px solid var(--parch-edge);background:#fff7}
+.ratiobox h4{font-family:"Cinzel";font-size:1.05rem;margin-bottom:.4rem;letter-spacing:.02em}
+.ratiobox.def h4{color:var(--inf)} .ratiobox.off h4{color:var(--arc)}
+.ratiobox p{color:var(--ink-soft);font-size:.92rem;margin-top:.5rem}
+.rbar{display:flex;height:24px;border-radius:6px;overflow:hidden;margin:.4rem 0;border:1px solid var(--parch-edge)}
+.rbar i{display:grid;place-items:center;font-family:"Cinzel";font-weight:700;font-size:.7rem;color:#fff;text-shadow:0 1px 2px #0007}
+.rbar .i{background:var(--inf)} .rbar .c{background:var(--cav)} .rbar .a{background:var(--arc)}
 .truckline{margin-top:2.4rem;display:flex;align-items:center;gap:clamp(1rem,4vw,2.4rem);
   border-top:1px dashed oklch(0.74 0.13 73 / .35);padding-top:1.8rem;flex-wrap:wrap}
 .truckline .big{font-family:"Cinzel";font-weight:900;font-size:clamp(1.6rem,5vw,3rem);line-height:1;
@@ -560,6 +580,8 @@ body > .skiptranslate{display:none !important}
 .vswitch .vopt.active{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:var(--iron);box-shadow:inset 0 1px 0 #fff7}
 .vswitch .vopt:not(.active):hover{color:#fff;background:oklch(0.62 0.10 75 / .18)}
 @media(max-width:600px){.vswitch .vlab{display:none}.vswitch .vopt{font-size:.62rem;padding:.3rem .55rem}}
+.vswitch{transition:transform .35s cubic-bezier(.16,1,.3,1)}
+.vswitch.tuck{transform:translateX(-50%) translateY(-170%)}
 </style>
 <div class="vswitch notranslate" role="group" aria-label="Choose a version">
   <span class="vlab">View</span>
@@ -662,22 +684,25 @@ body > .skiptranslate{display:none !important}
       <h2>Troop ratios and roles</h2>
       <p class="sub">Three troop types, two jobs: hold the line, or break it. For a garrison you mostly hold.</p>
     </div>
-    <div class="reasons" data-rv style="grid-template-columns:repeat(3,1fr)">
-      <div class="r"><h4>Infantry</h4><p>Your defensive frontliners. The wall.</p></div>
-      <div class="r"><h4>Cavalry</h4><p>Second in command - offense and defense, master of none.</p></div>
-      <div class="r"><h4>Archers</h4><p>Damage dealers. Glass cannons. Weak on defense.</p></div>
+    <div class="rolecards" data-rv>
+      <div class="rolecard inf"><div class="cap"></div><img src="assets/troop-infantry.png" alt="Infantry troop"><h4>Infantry</h4><p>Your defensive frontliners. The wall.</p></div>
+      <div class="rolecard cav"><div class="cap"></div><img src="assets/troop-cavalry.png" alt="Cavalry troop"><h4>Cavalry</h4><p>Second in command - offense and defense, master of none.</p></div>
+      <div class="rolecard arc"><div class="cap"></div><img src="assets/troop-archer.png" alt="Archer troop"><h4>Archers</h4><p>Damage dealers. Glass cannons. Weak on defense.</p></div>
     </div>
     <hr class="rule">
     <div class="split" style="align-items:start">
       <div data-rv>
-        <div class="deflist">
-          <div class="row">
-            <img class="ico" src="assets/troop-infantry.png" alt="">
-            <div><h4>Defensive ratio</h4><p><strong>70 / 30 / 0</strong> or <strong>60 / 40 / 0</strong> (infantry / cavalry / archer). This is your bread and butter for holding a wall.</p></div>
+        <div class="ratiowrap">
+          <div class="ratiobox def">
+            <h4>Defensive ratio</h4>
+            <div class="rbar"><i class="i" style="flex:70">70% INF</i><i class="c" style="flex:30">30% CAV</i></div>
+            <div class="rbar"><i class="i" style="flex:60">60% INF</i><i class="c" style="flex:40">40% CAV</i></div>
+            <p>70 / 30 / 0 or 60 / 40 / 0 (infantry / cavalry / archer). Bread and butter for holding a wall.</p>
           </div>
-          <div class="row">
-            <img class="ico" src="assets/troop-archer.png" alt="">
-            <div><h4>Offensive ratio</h4><p><strong>50 / 20 / 30</strong> - trades defense for damage. Use it only when the fight calls for it.</p></div>
+          <div class="ratiobox off">
+            <h4>Offensive ratio</h4>
+            <div class="rbar"><i class="i" style="flex:50">50% INF</i><i class="c" style="flex:20">20%</i><i class="a" style="flex:30">30% ARC</i></div>
+            <p>50 / 20 / 30 - trades defense for damage. Use it only when the fight calls for it.</p>
           </div>
         </div>
         <p class="lead" data-rv style="margin-top:1.4rem">The <strong>tier and level of your infantry MATTERS.</strong> Always: <strong>1.</strong> upgrade your barracks, <strong>2.</strong> promote your troops.</p>
@@ -946,11 +971,15 @@ body > .skiptranslate{display:none !important}
 const prog = document.getElementById('progress');
 const bar = document.getElementById('bar');
 const hero = document.querySelector('.hero');
+const vsw = document.querySelector('.vswitch');
+let lastY = 0;
 function onScroll(){
   const h = document.documentElement;
   const sc = h.scrollTop, max = h.scrollHeight - h.clientHeight;
   prog.style.width = (max>0 ? (sc/max*100) : 0) + '%';
   if(sc > hero.offsetHeight - 80) bar.classList.add('show'); else bar.classList.remove('show');
+  if(vsw){ if(sc > 150 && sc > lastY) vsw.classList.add('tuck'); else vsw.classList.remove('tuck'); }
+  lastY = sc;
 }
 addEventListener('scroll', onScroll, {passive:true}); onScroll();
 
