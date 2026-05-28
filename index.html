@@ -4,34 +4,34 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src 'self' data: https://www.gstatic.com https://fonts.gstatic.com https://translate.googleapis.com https://translate.google.com https://www.google.com; style-src 'unsafe-inline' https://fonts.googleapis.com https://www.gstatic.com https://translate.googleapis.com; script-src 'self' 'unsafe-inline' https://translate.googleapis.com https://translate.google.com https://translate-pa.googleapis.com https://www.gstatic.com; font-src https://fonts.gstatic.com; connect-src 'self' https://translate.googleapis.com https://translate-pa.googleapis.com https://translate.google.com; frame-src 'self' https://translate.google.com; object-src 'none'; base-uri 'self'; form-action 'none';">
-<title>How 2 Bear Hunt - A Kingshot Rally Codex</title>
-<meta name="description" content="A complete Kingshot Bear Hunt guide: how to join rallies, the only skill that counts, hero picks, the avoid tier, the multiplicative damage math, rally balancing and troop formations. Scribed by Summer, [ABG], Kingdom 356.">
+<title>How 2 Garrison - A Kingshot War Codex</title>
+<meta name="description" content="A complete Kingshot garrison defense codex: joining a garrison properly, troop ratios and roles, the only joiner skill, defensive heroes, reading the battle report, remedies, forts and sanctuaries, castle battle tactics, batch healing and R4/R5 garrison management. Scribed by Summer, [ABG], Kingdom 356.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <style>
 :root{
-  /* hunt parchment - bone/ivory sheets on a forest night */
-  --parch:      oklch(0.945 0.018 95);   /* bone */
-  --parch-2:    oklch(0.905 0.022 96);
-  --parch-edge: oklch(0.83 0.028 96);
-  --ink:        oklch(0.255 0.018 150);
-  --ink-soft:   oklch(0.43 0.020 150);
-  --ink-faint:  oklch(0.50 0.018 150);
-  /* metals & blood */
-  --gold:       oklch(0.70 0.090 75);    /* antler bronze (reuses --gold name) */
-  --gold-deep:  oklch(0.54 0.080 62);
-  --gold-bright:oklch(0.82 0.085 82);
-  --ember:      oklch(0.505 0.205 25);   /* blood crimson */
-  --ember-br:   oklch(0.60 0.220 28);
-  --iron:       oklch(0.165 0.028 155);  /* forest night */
-  --iron-2:     oklch(0.225 0.032 158);
-  --iron-3:     oklch(0.300 0.034 160);
-  --royal:      oklch(0.52 0.120 200);
-  /* troop runes - archer leads (does most dmg) */
-  --inf:        oklch(0.55 0.030 150);   /* infantry - muted (little dmg) */
-  --arc:        oklch(0.62 0.165 145);   /* archer - vivid green (top dmg) */
-  --cav:        oklch(0.60 0.150 60);    /* cavalry - bronze-amber (2nd) */
+  /* fortress parchment - aged vellum sheets on iron and granite */
+  --parch:      oklch(0.930 0.018 88);   /* vellum */
+  --parch-2:    oklch(0.895 0.022 84);
+  --parch-edge: oklch(0.800 0.030 82);
+  --ink:        oklch(0.255 0.020 60);
+  --ink-soft:   oklch(0.420 0.020 60);
+  --ink-faint:  oklch(0.500 0.018 60);
+  /* metals & banner */
+  --gold:       oklch(0.620 0.100 75);   /* brass (reuses --gold name) */
+  --gold-deep:  oklch(0.500 0.085 70);
+  --gold-bright:oklch(0.780 0.100 82);
+  --ember:      oklch(0.515 0.200 26);   /* banner crimson */
+  --ember-br:   oklch(0.600 0.210 30);
+  --iron:       oklch(0.175 0.012 252);  /* iron night */
+  --iron-2:     oklch(0.225 0.014 252);
+  --iron-3:     oklch(0.310 0.016 254);
+  --royal:      oklch(0.500 0.120 248);
+  /* troop runes - infantry holds the wall */
+  --inf:        oklch(0.500 0.110 245);  /* infantry - defender steel */
+  --arc:        oklch(0.520 0.190 28);   /* archers - crimson glass cannons */
+  --cav:        oklch(0.560 0.090 76);   /* cavalry - brass */
   /* rarity tiers */
   --t-grey:   oklch(0.62 0.012 250);
   --t-green:  oklch(0.60 0.150 148);
@@ -46,7 +46,7 @@
   --fs-lead: clamp(1.18rem, 1.05rem + 0.7vw, 1.6rem);
   --fs-h2:   clamp(2rem, 1.3rem + 3.1vw, 3.7rem);
   --fs-h3:   clamp(1.3rem, 1.05rem + 1.1vw, 1.95rem);
-  --fs-mega: clamp(3.2rem, 1.4rem + 9vw, 8.5rem);
+  --fs-mega: clamp(2.8rem, 1.1rem + 7vw, 6.6rem);
 
   --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
@@ -119,13 +119,13 @@ a{color:inherit}
   box-shadow:inset 0 -120px 120px -60px oklch(0.10 0.02 50);}
 .hero .wrap{position:relative;z-index:3;display:grid;grid-template-columns:1.15fr .85fr;
   align-items:center;gap:clamp(1rem,4vw,3rem);width:100%;padding-block:clamp(5rem,12vh,9rem)}
-.hero-text{max-width:34ch}
+.hero-text{max-width:none}
 .kicker{display:inline-flex;align-items:center;gap:.7rem;margin-bottom:1.4rem}
 .kicker img{height:34px}
 .kicker span{font-family:"Cinzel";font-weight:600;letter-spacing:.34em;font-size:.72rem;
   text-transform:uppercase;color:var(--gold);padding-left:.2rem}
 .hero h1{font-size:var(--fs-mega);font-weight:900;letter-spacing:0;text-wrap:balance}
-.hero h1 .word{display:inline-block;padding:0 .1em .08em 0;
+.hero h1 .word{display:inline-block;padding:0 .1em .08em 0;overflow-wrap:break-word;
   color:transparent;background:
     linear-gradient(180deg, var(--gold-bright) 8%, var(--gold) 42%, var(--gold-deep) 96%);
   -webkit-background-clip:text;background-clip:text;
@@ -554,14 +554,11 @@ body > .skiptranslate{display:none !important}
 <div id="progress"></div>
 
 <style>
-.vswitch{position:fixed;top:11px;left:50%;transform:translateX(-50%);z-index:140;display:flex;align-items:center;gap:.3rem;
-  padding:4px 5px;border-radius:999px;background:oklch(0.16 0.02 150 / .85);backdrop-filter:blur(8px) saturate(1.2);
-  border:1px solid oklch(0.70 0.09 75 / .45);box-shadow:0 4px 14px -6px #000a;font-family:"Cinzel",serif}
+.vswitch{position:fixed;top:11px;left:50%;transform:translateX(-50%);z-index:140;display:flex;align-items:center;gap:.3rem;padding:4px 5px;border-radius:999px;background:oklch(0.16 0.012 252 / .85);backdrop-filter:blur(8px) saturate(1.2);border:1px solid oklch(0.62 0.10 75 / .45);box-shadow:0 4px 14px -6px #000a;font-family:"Cinzel",serif}
 .vswitch .vlab{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:oklch(0.82 0.05 80 / .7);padding-left:.5rem;font-weight:600}
-.vswitch .vopt{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:.32rem .7rem;border-radius:999px;
-  color:oklch(0.88 0.04 80 / .85);text-decoration:none;white-space:nowrap;transition:.2s;cursor:pointer}
+.vswitch .vopt{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:.32rem .7rem;border-radius:999px;color:oklch(0.88 0.04 80 / .85);text-decoration:none;white-space:nowrap;transition:.2s;cursor:pointer}
 .vswitch .vopt.active{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:var(--iron);box-shadow:inset 0 1px 0 #fff7}
-.vswitch .vopt:not(.active):hover{color:#fff;background:oklch(0.70 0.09 75 / .18)}
+.vswitch .vopt:not(.active):hover{color:#fff;background:oklch(0.62 0.10 75 / .18)}
 @media(max-width:600px){.vswitch .vlab{display:none}.vswitch .vopt{font-size:.62rem;padding:.3rem .55rem}}
 </style>
 <div class="vswitch notranslate" role="group" aria-label="Choose a version">
@@ -587,16 +584,18 @@ body > .skiptranslate{display:none !important}
 
 <header id="bar" aria-label="Chapter navigation">
   <img class="crest" src="assets/logo-kingshot.png" alt="Kingshot">
-  <span class="btitle">How 2 Bear Hunt</span>
+  <span class="btitle">How 2 Garrison</span>
   <nav aria-label="Chapters">
     <a href="#join">Join</a>
+    <a href="#ratios">Ratios</a>
     <a href="#skill">The Skill</a>
-    <a href="#skip">Skips</a>
     <a href="#heroes">Heroes</a>
-    <a href="#avoid">Tier List</a>
-    <a href="#math">The Math</a>
-    <a href="#balance">Balance</a>
-    <a href="#formations">Formations</a>
+    <a href="#report">Report</a>
+    <a href="#remedies">Remedies</a>
+    <a href="#forts">Forts</a>
+    <a href="#tips">Tactics</a>
+    <a href="#healing">Healing</a>
+    <a href="#manage">Manage</a>
   </nav>
 </header>
 
@@ -606,10 +605,10 @@ body > .skiptranslate{display:none !important}
     <div class="hero-text">
       <div class="kicker" data-rv>
         <img src="assets/logo-kingshot.png" alt="Kingshot logo">
-        <span>Bear Hunt Codex</span>
+        <span>War Codex</span>
       </div>
-      <h1 class="d1" data-rv><span class="small">How 2</span><span class="word">Bear Hunt</span></h1>
-      <p class="blurb" data-rv style="--d:2">Joining right is most of your rally damage. Who to bring, the one skill that counts, and the math that makes a rally <em>hit</em>.</p>
+      <h1 class="d1" data-rv><span class="small">How 2</span><span class="word">Garrison</span></h1>
+      <p class="blurb" data-rv style="--d:2">Holding the wall is a team sport. The right troops, the right joiners, and a rally that does not crumble on the first hit.</p>
       <div class="byline" data-rv style="--d:3">
         <span class="seal" aria-hidden="true">S</span>
         <div>Scribed by <b>Summer</b> · Alliance <b>[ABG]</b> · Kingdom&nbsp;356</div>
@@ -617,59 +616,97 @@ body > .skiptranslate{display:none !important}
     </div>
     <div class="hero-art d2" data-rv>
       <span class="glow"></span>
-      <img src="assets/hero-render.png" alt="A flexing Bear Hunt rally hero standing over fallen knights">
+      <img src="assets/hero-castle.png" alt="A Kingshot defender raising a shield beside a fortified castle keep">
     </div>
   </div>
   <div class="scrollcue" aria-hidden="true"><span>Read</span><span class="ln"></span></div>
 </section>
 
-<!-- ============ §1 JOIN A RALLY ============ -->
+<!-- ============ §1 JOIN ============ -->
 <section class="sheet band" id="join">
   <div class="wrap">
     <div class="eyebrow" data-rv>Chapter I</div>
     <div class="chapter" data-rv>
       <span class="no">01</span>
-      <h2>Join a rally properly</h2>
-      <p class="sub">Three things decide whether your join actually helps: which slot, which heroes, and what fills your march.</p>
+      <h2>Join a garrison properly</h2>
+      <p class="sub">Same as any rally: the right slot, and heroes that carry troops.</p>
     </div>
     <div class="split">
       <div data-rv>
         <div class="deflist">
           <div class="row">
-            <img class="ico" src="assets/portrait-yeonwoo.png" alt="">
-            <div><h4>Joiner goes in slot 1</h4><p>Your joiner hero takes the <strong>first slot</strong> - the one carrying the little flag icon. That is the hero the rally reads.</p></div>
+            <img class="ico" src="assets/troop-infantry.png" alt="">
+            <div><h4>Joiner goes in slot 1</h4><p>Your joiner hero takes the <strong>first slot</strong> - the one with the little flag icon. That is the hero the garrison reads.</p></div>
           </div>
           <div class="row">
-            <img class="ico" src="assets/ic-xp-enhancement.png" alt="">
-            <div><h4>Slots 2 and 3 are for XP</h4><p>The other two heroes do not change the rally bonus, but give them a <strong>high XP level</strong> so you bring more troops.</p></div>
+            <img class="ico" src="assets/troop-cavalry.png" alt="">
+            <div><h4>Slots 2 and 3 are for XP</h4><p>The other two heroes do not change the bonus, but give them a <strong>high XP level</strong> so you bring more troops.</p></div>
           </div>
         </div>
       </div>
       <div class="d1" data-rv>
         <div class="panel foil">
-          <p style="margin:0"><strong>More archers = more damage.</strong> Make sure <em>every single march</em> you send into a Bear Hunt has archers in it. The why is in <a href="#formations">Formations</a>.</p>
+          <p style="margin:0"><strong>More infantry = more defense.</strong> A garrison is a wall. Lead with infantry and your defense holds. The exact ratios are in <a href="#ratios">Chapter II</a>.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ §2 THE SKILL ============ -->
-<section class="sheet alt band" id="skill">
+<!-- ============ §2 RATIOS ============ -->
+<section class="sheet alt band" id="ratios">
   <div class="wrap">
     <div class="eyebrow" data-rv>Chapter II</div>
     <div class="chapter" data-rv>
       <span class="no">02</span>
+      <h2>Troop ratios and roles</h2>
+      <p class="sub">Three troop types, two jobs: hold the line, or break it. For a garrison you mostly hold.</p>
+    </div>
+    <div class="reasons" data-rv style="grid-template-columns:repeat(3,1fr)">
+      <div class="r"><h4>Infantry</h4><p>Your defensive frontliners. The wall.</p></div>
+      <div class="r"><h4>Cavalry</h4><p>Second in command - offense and defense, master of none.</p></div>
+      <div class="r"><h4>Archers</h4><p>Damage dealers. Glass cannons. Weak on defense.</p></div>
+    </div>
+    <hr class="rule">
+    <div class="split" style="align-items:start">
+      <div data-rv>
+        <div class="deflist">
+          <div class="row">
+            <img class="ico" src="assets/troop-infantry.png" alt="">
+            <div><h4>Defensive ratio</h4><p><strong>70 / 30 / 0</strong> or <strong>60 / 40 / 0</strong> (infantry / cavalry / archer). This is your bread and butter for holding a wall.</p></div>
+          </div>
+          <div class="row">
+            <img class="ico" src="assets/troop-archer.png" alt="">
+            <div><h4>Offensive ratio</h4><p><strong>50 / 20 / 30</strong> - trades defense for damage. Use it only when the fight calls for it.</p></div>
+          </div>
+        </div>
+        <p class="lead" data-rv style="margin-top:1.4rem">The <strong>tier and level of your infantry MATTERS.</strong> Always: <strong>1.</strong> upgrade your barracks, <strong>2.</strong> promote your troops.</p>
+      </div>
+      <div class="d1" data-rv>
+        <div class="panel foil">
+          <p style="margin:0"><strong>Joiner troops ignore your gear.</strong> Hero gear, governor gear, charms and research do <strong>NOT</strong> affect your JOINER troops. They only boost your rally strength when you are the one <strong>LEADING</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §3 THE SKILL ============ -->
+<section class="sheet band" id="skill">
+  <div class="wrap">
+    <div class="eyebrow" data-rv>Chapter III</div>
+    <div class="chapter" data-rv>
+      <span class="no">03</span>
       <h2>The only skill that matters</h2>
       <p class="sub">As a joiner, exactly one number on your hero counts. Everything else is noise.</p>
     </div>
     <div class="split" style="align-items:center">
       <div data-rv>
-        <p class="lead">It is always the <strong>Expedition skill on the top-right</strong> of your joiner hero - that skill and its <strong>skill level</strong> are all the rally reads.</p>
+        <p class="lead">It is always the <strong>Expedition skill on the top-right</strong> of your joiner hero - that skill and its <strong>skill level</strong> are all that count.</p>
         <div class="gates" style="margin-top:1.4rem">
           <div class="gate">
             <div class="tag">Gear on joiners <span class="req">does nothing</span></div>
-            <p>Strip the gear off your joiner heroes and feed it into your three rally leaders instead. See the <a href="https://texnottexas.github.io/kingshot-gear-guide/">gear codex</a>.</p>
+            <p>Strip the gear off your joiner heroes and feed it to your three rally leaders. See the <a href="https://texnottexas.github.io/kingshot-gear-guide/">gear guide</a>.</p>
           </div>
           <div class="gate imb">
             <div class="tag">Joiner cap <span class="req">4 max</span></div>
@@ -678,215 +715,211 @@ body > .skiptranslate{display:none !important}
         </div>
       </div>
       <figure class="d1 shot" data-rv>
-        <img src="assets/shot-expedition-skill.png" alt="A joiner hero card with the top-right Expedition skill circled">
-        <figcaption>The circled skill - top-right, Expedition - is the only one that counts.</figcaption>
+        <img src="assets/shot-expedition-skill.png" alt="A joiner hero card with the top-right Expedition skill circled in the screenshot">
+        <figcaption>The circled skill - top-right, Expedition - is the only one the garrison reads.</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ============ §3 SKIP ============ -->
-<section class="rule-band band" id="skip">
-  <div class="wrap">
-    <div class="eyebrow" data-rv>Chapter III</div>
-    <h2 data-rv>Skills <span class="rule-hl">skip</span>, stars don't count.</h2>
-    <p class="lead" data-rv style="color:oklch(0.86 0.02 150);margin-top:1rem">Two rules run the joiner queue: higher skill levels skip lower ones, and troop capacity comes from XP - never from stars.</p>
-
-    <div class="reasons">
-      <div class="r" data-rv><h4>Higher level skips lower</h4><p>A <strong>Lv5</strong> joiner skill skips Lv1, 2, 3 and 4. If your skill level is lower than the other joiners, <strong>it gets skipped</strong> - even with more stars.</p></div>
-      <div class="r d1" data-rv><h4>XP = troop capacity</h4><p>Always join with your <strong>highest XP-level</strong> hero. More XP means more troops, and <strong>more troops = more points</strong>.</p></div>
-      <div class="r d2" data-rv><h4>Stars are irrelevant</h4><p><strong>Star level does not affect troop capacity.</strong> Don't pick a joiner by stars.</p></div>
-    </div>
-
-    <div class="sets" style="margin-top:2rem">
-      <div class="setcard arc" data-rv><div class="lab">Skip ladder</div><span class="one">Lv5 → skips 1-4</span><p>Bring a low-skill hero on purpose only if you want its skill skipped.</p></div>
-      <div class="setcard cav d1" data-rv><div class="lab">Example · Jaeger</div><span class="one">Lv3 skill</span><p>Usually don't join with Jaeger. But you <em>can</em> purely for capacity - his Lv3 skill is skipped by any Lv4+.</p></div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ §4 HEROES ============ -->
-<section class="sheet band" id="heroes">
+<section class="sheet alt band" id="heroes">
   <div class="wrap">
     <div class="eyebrow" data-rv>Chapter IV</div>
     <div class="chapter" data-rv>
       <span class="no">04</span>
       <h2>Who to join with</h2>
-      <p class="sub">Four heroes, two stat families. Bring these and nothing else.</p>
+      <p class="sub">Most of the time: S and A tier defensive heroes, paired with a 70/30/0 or 60/40/0 formation.</p>
     </div>
-    <div class="heroes">
-      <div class="hcard let" data-rv><img src="assets/portrait-yeonwoo.png" alt="Yeonwoo"><div class="nm">Yeonwoo</div><span class="st">Lethality</span></div>
-      <div class="hcard let d1" data-rv><img src="assets/portrait-chenko.png" alt="Chenko"><div class="nm">Chenko</div><span class="st">Lethality</span></div>
-      <div class="hcard atk d2" data-rv><img src="assets/portrait-margot.png" alt="Margot"><div class="nm">Margot</div><span class="st">Attack</span></div>
-      <div class="hcard atk d3" data-rv><img src="assets/portrait-amane.png" alt="Amane"><div class="nm">Amane</div><span class="st">Attack</span></div>
+    <figure class="shot" data-rv style="margin-bottom:1.8rem">
+      <img src="assets/tier-list.png" alt="Garrison joiner tier list - S tier and A defensive heroes at the top, A offensive heroes below">
+      <figcaption>Garrison joiner tier list.</figcaption>
+    </figure>
+    <div class="split" style="align-items:start">
+      <div data-rv>
+        <div class="panel foil">
+          <p style="margin:0"><strong>Lead with defense.</strong> Use the <strong>S tier</strong> and <strong>A defensive</strong> heroes with 70/30/0 or 60/40/0. That is your bread and butter.</p>
+        </div>
+      </div>
+      <div class="d1" data-rv>
+        <p class="note"><strong>Offensive heroes</strong> can be used, but you trade some defense for offense. Sometimes that is necessary depending on the opponent - for example, <strong>Viking Vengeance</strong>.</p>
+      </div>
     </div>
-    <p class="note" data-rv style="margin-top:1.2rem;font-style:italic">If you join my rally with any other hero, please just uninstall the game lol.</p>
   </div>
 </section>
 
-<!-- ============ §5 TIER LIST & AVOID ============ -->
-<section class="sheet alt band" id="avoid">
+<!-- ============ §5 REPORT ============ -->
+<section class="sheet band" id="report">
   <div class="wrap">
     <div class="eyebrow" data-rv>Chapter V</div>
     <div class="chapter" data-rv>
       <span class="no">05</span>
-      <h2>The tier list, and who to avoid</h2>
-      <p class="sub">These heroes either roll the dice, or do nothing at all. Keep them out of real rallies.</p>
+      <h2>Read the battle report</h2>
+      <p class="sub">When a defense fails, the report tells you exactly why. Learn to read it.</p>
     </div>
-    <figure class="shot" data-rv style="margin-bottom:1.8rem">
-      <img src="assets/tier-list.png" alt="Bear Hunt joiner tier list - top tier Yeonwoo, Chenko, Margot, Amane; lower and avoid tiers below. The avoid heroes are listed in full beneath this image.">
-      <figcaption>Bear Hunt joiner tier list.</figcaption>
-    </figure>
-    <div class="avoid">
-      <div class="a" data-rv><div class="t"><span class="who">Rosa, Marlin, Petra, Jaeger, Jabel</span><span>Chance-based</span></div><p>Damage <strong>does not stack</strong> and output is <strong>randomly generated</strong>.</p></div>
-      <div class="a" data-rv><div class="t"><span class="who">Zoe, Saul, Alcar, Eric</span><span>No damage</span></div><p>They only have a defensive skill - they don't increase damage at all.</p></div>
-      <div class="a" data-rv><div class="t"><span class="who">Any blue (R) heroes</span><span>Gathering only</span></div><p>Their skills only help gather resources. Nothing for a rally.</p></div>
-      <div class="a" data-rv><div class="t"><span class="who">Diana</span><span>Niche</span></div><p>Only useful against rallying terrors - not Bear Hunt.</p></div>
-      <div class="a" data-rv><div class="t"><span class="who">Quinn, Howard, Gordon, Fahd</span><span>Defensive only</span></div><p>Defensive skill only - no rally damage.</p></div>
+    <div class="split" style="align-items:start">
+      <figure class="shot" data-rv>
+        <img loading="lazy" src="assets/shot-battle-report.png" alt="A battle report showing troop power comparison and stat bonuses for infantry, cavalry and archers">
+        <figcaption>The report breaks down troop mix, stats and totals.</figcaption>
+      </figure>
+      <div class="d1" data-rv>
+        <div class="gates">
+          <div class="gate">
+            <div class="tag">Wrong troop mix <span class="req">Finding 1</span></div>
+            <p>Not enough infantry and cavalry, and too many archers. The wall was paper.</p>
+          </div>
+          <div class="gate">
+            <div class="tag">Infantry stats too low <span class="req">Finding 2</span></div>
+            <p>Lacking severely in infantry <strong>defense, lethality and health</strong>.</p>
+          </div>
+          <div class="gate">
+            <div class="tag">Not enough troops <span class="req">Finding 3</span></div>
+            <p>Outnumbered - roughly <strong>1m vs 1.3m</strong>. You cannot hold what you cannot field.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="a thrud" data-rv>
-      <div class="t"><span class="who">Exception: Thrud</span><span>Archer rallies</span></div>
-      <p>Thrud sits in the avoid tier, but she's great for <strong>archer-heavy rallies</strong> - she boosts all archer damage. Everyone else in the avoid tier: genuinely avoid.</p>
-    </div>
+    <p class="note" data-rv style="margin-top:1.4rem">Three problems, three fixes. The remedies are in <a href="#remedies">Chapter VI</a>.</p>
   </div>
 </section>
 
-<!-- ============ §6 THE MATH ============ -->
-<section class="sheet band" id="math">
+<!-- ============ §6 REMEDIES ============ -->
+<section class="sheet alt band" id="remedies">
   <div class="wrap">
     <div class="eyebrow" data-rv>Chapter VI</div>
     <div class="chapter" data-rv>
       <span class="no">06</span>
-      <h2>Different heroes hit harder</h2>
-      <p class="sub">Same joiners add up. Different joiners multiply. Mixing stat families is free damage.</p>
+      <h2>How to hold next time</h2>
+      <p class="sub">Fix the three failures from the report, in order.</p>
     </div>
-
-    <div class="dmg">
-      <div class="c" data-rv>
-        <div class="mix">4 identical heroes<br><small>(e.g. 4× Amane)</small></div>
-        <div class="big">2.0×</div>
-        <div class="pct">+100% boost · additive</div>
+    <div class="gates" data-rv>
+      <div class="gate">
+        <div class="tag">Fix the formation <span class="req">Remedy 1</span></div>
+        <p>Your mix was lacking defense. Reset it to a defensive ratio: <strong>70 / 30 / 0</strong> infantry / cavalry / archer, or <strong>60 / 40 / 0</strong>.</p>
       </div>
-      <div class="c d1" data-rv>
-        <div class="mix">2 Amane + 2 Chenko</div>
-        <div class="big">2.25×</div>
-        <div class="pct">+125% boost · two families</div>
+      <div class="gate">
+        <div class="tag">Build infantry power <span class="req">Remedy 2</span></div>
+        <p>Lead with the right heroes and the right infantry gear: <strong>Helmet + Boots = Lethality</strong>, <strong>Chest + Gloves = Health</strong>. Heroes: <strong>Helga</strong> (lethality &amp; defense), <strong>Eric</strong> (health &amp; defense), <strong>Alcar</strong> (damage &amp; infantry defense). Joiners (4): <strong>Gordon</strong> (health), <strong>Thrud &amp; Hilde</strong> (defense + lethality), <strong>Saul</strong> (defense + health).</p>
       </div>
-      <div class="c best d2" data-rv>
-        <div class="mix">1 Chenko + 1 Amane + 1 Margot + 1 Yeonwoo</div>
-        <div class="big">2.5×</div>
-        <div class="pct">+150% boost · fully mixed</div>
+      <div class="gate">
+        <div class="tag">Field more troops <span class="req">Remedy 3</span></div>
+        <p>Fill the rally <strong>completely</strong>, use <strong>pet skills</strong> for larger capacity, upgrade your <strong>command center</strong>, find a leader with bigger capacity (as strong or stronger), and while garrisoned <strong>replenish</strong> after every attack.</p>
       </div>
     </div>
-
-    <p class="lead" data-rv>That's a <strong>12.5% relative increase</strong> just from mixing instead of stacking one hero. Here's why:</p>
-
-    <div class="split" style="align-items:center;margin-top:1rem">
-      <div data-rv>
-        <div class="formula">
-<span class="k">damageUp</span> = math.prod(1 + v/100 for v in DamageUp.values())<br><br>
-same op  → {102: <span class="n">100</span>}        → 1 + 100/100 = <span class="n">2.0</span><br>
-two ops  → {101: <span class="n">50</span>, 102: <span class="n">50</span>} → 1.5 × 1.5 = <span class="n">2.25</span>
-        </div>
-      </div>
-      <div class="d1" data-rv>
-        <p class="note">Each unique <strong>effect_op</strong> is multiplied separately. Same op? The buffs just add. Different ops? They compound. Basically: join with a different hero, get more damage.</p>
-        <div class="tldr">
-          <span class="pill let">Lethality</span><span class="op">+</span><span class="pill let">Lethality</span>
-          <span class="op">// additive</span>
-        </div>
-        <div class="tldr">
-          <span class="pill let">Lethality</span><span class="op">×</span><span class="pill atk">Attack</span>
-          <span class="op">// multiplicative</span>
-        </div>
-        <p class="note" style="margin-top:.9rem">If a rally is <strong>only</strong> lethality or <strong>only</strong> attack, you do less. Add Amane or Margot when you see only Chenko & Yeonwoo, and vice versa (up to 4 heroes).</p>
-      </div>
-    </div>
-    <p class="credit" data-rv>Damage math credit: <strong>Daryl</strong> from <a href="https://kingshotguides.com">Kingshotguides.com</a>.</p>
   </div>
 </section>
 
-<!-- ============ §7 BALANCE ============ -->
-<section class="sheet alt band" id="balance">
+<!-- ============ §7 FORTS ============ -->
+<section class="sheet band" id="forts">
   <div class="wrap">
     <div class="eyebrow" data-rv>Chapter VII</div>
     <div class="chapter" data-rv>
       <span class="no">07</span>
-      <h2>Balance the rally</h2>
-      <p class="sub">Two jobs: joiners read what a rally needs, leaders police what's in theirs.</p>
+      <h2>Forts and sanctuaries</h2>
+      <p class="sub">High-value objectives. Take them as a team, never alone.</p>
     </div>
-    <div class="gov">
+    <div class="split" style="align-items:start">
       <div data-rv>
-        <div class="spend">
-          <div class="who f2p">
-            <div class="t">If you're a joiner</div>
-            <p>Read what the rally <strong>needs</strong>. If it already has a Chenko & Yeonwoo, join with <strong>Margot or Amane</strong> (and vice versa). Save your Hilde or low-skill hero for weaker rallies. Stop dumping trash joiners or tiny troop counts into strong rallies.</p>
+        <div class="gates">
+          <div class="gate">
+            <div class="tag">Always rally them <span class="req">do</span></div>
+            <p>Coordinate a rally leader with your alliance, and have people join with the correct heroes and troop formation. Replenish troops after each attack.</p>
+          </div>
+          <div class="gate imb">
+            <div class="tag">Never solo them <span class="req">don't</span></div>
+            <p>Do not solo attack forts and sanctuaries. You will throw troops away for nothing.</p>
           </div>
         </div>
       </div>
       <div class="d1" data-rv>
-        <div class="spend">
-          <div class="who whale">
-            <div class="t">If you're a rally leader</div>
-            <p>Monitor your own rally. <strong>Kick</strong> any hero from the <a href="#avoid">avoid list</a>. Speak up in chat if it's unbalanced. Check your <strong>active rally bonuses</strong> (e.g. 2/4 attack, 2/4 lethality).</p>
-          </div>
-          <div class="who">
-            <div class="t">But don't over-kick</div>
-            <p>Do <strong>not</strong> kick someone for the "wrong" joiner hero if their joiner skill <strong>isn't active</strong> - it was skipped (see <a href="#skip">Chapter III</a>).</p>
-          </div>
+        <div class="panel foil">
+          <p style="margin:0"><strong>First to defeat = extra rewards.</strong> You get extra rewards for being the first to defeat the rebels - which means <strong>up to 15 people</strong> can earn them if they rally together. So rally together.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ §8 FORMATIONS ============ -->
-<section class="sheet band" id="formations">
+<!-- ============ §8 TIPS ============ -->
+<section class="sheet alt band" id="tips">
   <div class="wrap">
     <div class="eyebrow" data-rv>Chapter VIII</div>
     <div class="chapter" data-rv>
       <span class="no">08</span>
-      <h2>Build your formations</h2>
-      <p class="sub">Archers do the work. Infantry does almost nothing. Set your marches up to send as many archers as you can.</p>
+      <h2>Castle battle tips</h2>
+      <p class="sub">The tricks that win garrisons and break the other team's.</p>
     </div>
-
-    <div class="tp" data-rv>
-      <div class="row arc"><span class="lbl">Archer</span><span class="bar" aria-hidden="true"><i></i></span><span class="v">Most damage</span></div>
-      <div class="row cav"><span class="lbl">Cavalry</span><span class="bar" aria-hidden="true"><i></i></span><span class="v">2nd most</span></div>
-      <div class="row inf"><span class="lbl">Infantry</span><span class="bar" aria-hidden="true"><i></i></span><span class="v">Little to none</span></div>
+    <div class="reasons" data-rv style="grid-template-columns:repeat(2,1fr)">
+      <div class="r"><h4>Focus the turrets</h4><p>Focus turrets to weaken the enemy castle occupier before you commit.</p></div>
+      <div class="r"><h4>Time your rallies</h4><p>Lead perfectly timed <strong>double or triple rallies</strong> to knock someone out of a garrison - practice landing them a second or less apart.</p></div>
+      <div class="r"><h4>Focus enemy joiners</h4><p>If the fight is hostile, focus the enemy team's <strong>joiners' castles</strong> - the weaker members. Weaken them and their rallies and garrisons go empty and easy to take.</p></div>
+      <div class="r"><h4>Reinforce and replenish</h4><p>If the enemy is hostile, keep all allies reinforced, and constantly replenish troops wherever you are garrisoned.</p></div>
     </div>
+    <div class="panel foil" data-rv style="margin-top:1.6rem">
+      <p style="margin:0"><strong>Always batch heal.</strong> With enough people online you can set a short heal timer and heal instantly. Skip it and you bleed troops and speedups. More in <a href="#healing">Chapter IX</a>.</p>
+    </div>
+  </div>
+</section>
 
-    <div class="split" style="align-items:start;margin-top:1.4rem">
-      <div data-rv>
-        <div class="panel foil">
-          <p style="margin:0"><strong>Every formation needs a different hero in the 2nd and 3rd slot.</strong> If you repeat a hero across formations, deploying one will leave another short a hero.</p>
-        </div>
-      </div>
+<!-- ============ §9 HEALING ============ -->
+<section class="sheet band" id="healing">
+  <div class="wrap">
+    <div class="eyebrow" data-rv>Chapter IX</div>
+    <div class="chapter" data-rv>
+      <span class="no">09</span>
+      <h2>Batch healing</h2>
+      <p class="sub">The more allies online, the more wounded you clear in a single click.</p>
+    </div>
+    <div class="split" style="align-items:center">
+      <figure class="shot" data-rv>
+        <img loading="lazy" src="assets/shot-healing.png" alt="The Heal Injured panel showing wounded troops and a 17 minute heal timer">
+        <figcaption>A full queue plus auto-assist makes a long heal you can fire instantly.</figcaption>
+      </figure>
       <div class="d1" data-rv>
-        <div class="spend">
-          <div class="who f2p">
-            <div class="t">Fewer troops</div>
-            <p>Make 1-2 formations of mostly cavalry + archers (<strong>0/40/60</strong> inf/cav/arc) and use them to join your alliance's strongest rally leaders.</p>
-          </div>
-          <div class="who whale">
-            <div class="t">Lots of troops</div>
-            <p>Split your archers <strong>evenly</strong> across all available marches, then fill the rest of each with cavalry.</p>
-          </div>
-        </div>
+        <p class="lead">Roughly <strong>17 minutes of healing per click</strong> from <strong>7 people online</strong> with <strong>4 on auto-assist</strong> - a heal you can fire instantly.</p>
+        <p class="note" style="margin-top:.9rem">More allies online means more troops healed per click. Time it so the queue is full when you heal.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <h3 class="cz" data-rv style="font-size:var(--fs-h3);margin:1.8rem 0 .4rem">My formations - feel free to copy them</h3>
-    <p class="note" data-rv style="margin-bottom:1rem">Every formation has a different hero in the 2nd and 3rd slot, so deploying one never leaves another short.</p>
-    <div class="gallery" data-rv>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-1.png" alt="Bear Hunt formation 1"></figure>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-2.png" alt="Bear Hunt formation 2"></figure>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-3.png" alt="Bear Hunt formation 3"></figure>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-4.png" alt="Bear Hunt formation 4"></figure>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-5.png" alt="Bear Hunt formation 5"></figure>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-6.png" alt="Bear Hunt formation 6"></figure>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-7.png" alt="Bear Hunt formation 7"></figure>
-      <figure class="shot"><img loading="lazy" src="assets/shot-formation-8.png" alt="Bear Hunt formation 8"></figure>
+<!-- ============ §10 MANAGE ============ -->
+<section class="sheet alt band" id="manage">
+  <div class="wrap">
+    <div class="eyebrow" data-rv>Chapter X</div>
+    <div class="chapter" data-rv>
+      <span class="no">10</span>
+      <h2>Garrison management</h2>
+      <p class="sub">For the people holding the keys - R4 and R5.</p>
+    </div>
+    <div class="split" style="align-items:start">
+      <div data-rv>
+        <h3 class="cz" style="font-size:var(--fs-h3);margin:0 0 .5rem">Demote a bad joiner</h3>
+        <p class="note">If a joiner you don't want is sitting in the bonus (first 4 spots):</p>
+        <ol class="lead" style="margin:.8rem 0 0 1.2rem;font-size:var(--fs-body)">
+          <li>Find them in the rally / garrison list.</li>
+          <li>Tap the <strong>"…"</strong> (three dots) next to their name.</li>
+          <li>Choose <strong>Make Rally Leader</strong>.</li>
+          <li>Switch the rally leader <strong>back</strong> to the original person.</li>
+          <li>The one you temporarily promoted drops to the <strong>bottom of the list</strong> - out of the bonus.</li>
+        </ol>
+      </div>
+      <figure class="shot d1" data-rv>
+        <img loading="lazy" src="assets/shot-mgmt-leader.png" alt="The defender squad list with the Assign as Rally Captain option open for a member">
+        <figcaption>Promote then demote to drop a member out of the bonus.</figcaption>
+      </figure>
+    </div>
+    <hr class="rule">
+    <div class="split" style="align-items:start">
+      <div data-rv>
+        <h3 class="cz" style="font-size:var(--fs-h3);margin:0 0 .5rem">Check the troop ratio</h3>
+        <p class="note">Read the garrison's combined troop ratio and steer it. In this example it is <strong>39 / 30 / 30</strong> - too few infantry.</p>
+        <p class="note" style="margin-top:.7rem">Targets: <strong>Defensive 60/40/0 or 70/30/0</strong>, <strong>Offensive ~50/20/30</strong>. Check who has which troops by tapping the <strong>blue arrow</strong> to the right of each name.</p>
+      </div>
+      <figure class="shot d1" data-rv>
+        <img loading="lazy" src="assets/shot-mgmt-ratio.png" alt="The defender squad screen with the combined troop ratio and the per-member arrow highlighted">
+        <figcaption>The combined ratio and per-member arrow.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -901,8 +934,8 @@ two ops  → {101: <span class="n">50</span>, 102: <span class="n">50</span>} �
       <img src="assets/profile-summer.png" alt="[ABG]Summer - Alliance ABG, Kingdom 356">
     </div>
     <p class="meta d2" data-rv>
-      [ABG]Summer · Kingdom #356 · damage math by Daryl, <a href="https://kingshotguides.com">Kingshotguides.com</a><br>
-      More from this series → <a href="https://texnottexas.github.io/kingshot-gear-guide/">How to Gear</a>
+      [ABG]Summer · Kingdom #356<br>
+      More from this series → <a href="https://texnottexas.github.io/kingshot-gear-guide/">How to Gear</a> · <a href="https://texnottexas.github.io/kingshot-bear-hunt/">How 2 Bear Hunt</a>
     </p>
     <a class="totop d2" href="#top" data-rv>↑ Back to the top</a>
   </div>
