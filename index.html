@@ -383,6 +383,11 @@ figure.shot figcaption{font-family:"Cinzel";font-size:.78rem;letter-spacing:.04e
 .rbar{display:flex;height:24px;border-radius:6px;overflow:hidden;margin:.4rem 0;border:1px solid var(--parch-edge)}
 .rbar i{display:grid;place-items:center;font-family:"Cinzel";font-weight:700;font-size:.7rem;color:#fff;text-shadow:0 1px 2px #0007}
 .rbar .i{background:var(--inf)} .rbar .c{background:var(--cav)} .rbar .a{background:var(--arc)}
+.rgen-toggle{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:var(--parch-2);border:1px solid var(--parch-edge);margin:.2rem 0 .7rem}
+.rgen{font-family:"Cinzel",serif;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;padding:.3rem .75rem;border-radius:999px;border:0;background:transparent;color:var(--ink-soft);cursor:pointer;transition:.18s}
+.rgen.on{background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:var(--iron);box-shadow:inset 0 1px 0 #fff8}
+.rgen:not(.on):hover{color:var(--ink)}
+.rgen-pane[hidden]{display:none}
 .truckline{margin-top:2.4rem;display:flex;align-items:center;gap:clamp(1rem,4vw,2.4rem);
   border-top:1px dashed oklch(0.74 0.13 73 / .35);padding-top:1.8rem;flex-wrap:wrap}
 .truckline .big{font-family:"Cinzel";font-weight:900;font-size:clamp(1.6rem,5vw,3rem);line-height:1;
@@ -695,9 +700,19 @@ body > .skiptranslate{display:none !important}
         <div class="ratiowrap">
           <div class="ratiobox def">
             <h4>Defensive ratio</h4>
-            <div class="rbar"><i class="i" style="flex:70">70% INF</i><i class="c" style="flex:30">30% CAV</i></div>
-            <div class="rbar"><i class="i" style="flex:60">60% INF</i><i class="c" style="flex:40">40% CAV</i></div>
-            <p>70 / 30 / 0 or 60 / 40 / 0 (infantry / cavalry / archer). Bread and butter for holding a wall.</p>
+            <div class="rgen-toggle" role="tablist" aria-label="Game generation">
+              <button type="button" class="rgen on" data-rgen="main" aria-pressed="true">Main</button>
+              <button type="button" class="rgen" data-rgen="1904" aria-pressed="false">1904</button>
+            </div>
+            <div class="rgen-pane" data-rgen-pane="main">
+              <div class="rbar"><i class="i" style="flex:70">70% INF</i><i class="c" style="flex:30">30% CAV</i></div>
+              <div class="rbar"><i class="i" style="flex:60">60% INF</i><i class="c" style="flex:40">40% CAV</i></div>
+              <p>70 / 30 / 0 or 60 / 40 / 0 (infantry / cavalry / archer). Bread and butter for holding a wall.</p>
+            </div>
+            <div class="rgen-pane" data-rgen-pane="1904" hidden>
+              <div class="rbar"><i class="i" style="flex:60">60% INF</i><i class="c" style="flex:20">20% CAV</i><i class="a" style="flex:20">20% ARC</i></div>
+              <p>60 / 20 / 20 (infantry / cavalry / archer). Bread and butter for holding a wall in this generation.</p>
+            </div>
           </div>
           <div class="ratiobox off">
             <h4>Offensive ratio</h4>
@@ -982,6 +997,19 @@ function onScroll(){
   lastY = sc;
 }
 addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+// Defensive ratio: Main | 1904 generation toggle
+document.querySelectorAll('.ratiobox.def').forEach(function(box){
+  var btns = box.querySelectorAll('.rgen');
+  var panes = box.querySelectorAll('.rgen-pane');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var k = b.dataset.rgen;
+      btns.forEach(function(x){ var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+      panes.forEach(function(p){ p.hidden = p.dataset.rgenPane !== k; });
+    });
+  });
+});
 
 // reveal on scroll
 const io = new IntersectionObserver((es)=>{

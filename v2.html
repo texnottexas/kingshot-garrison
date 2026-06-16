@@ -200,6 +200,11 @@ h2.head{font-size:var(--fs-h2);text-wrap:balance}
 .rbar{display:flex;height:26px;border-radius:6px;overflow:hidden;margin:.5rem 0;border:1px solid oklch(0 0 0 / .25)}
 .rbar i{display:grid;place-items:center;font-family:"Saira Condensed";font-weight:700;font-size:.72rem;color:#fff;text-shadow:0 1px 2px #0007}
 .rbar .i{background:var(--steel)} .rbar .c{background:var(--brass-dp)} .rbar .a{background:var(--crimson)}
+.rgen-toggle{display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:oklch(1 0 0 / .08);border:1px solid oklch(0.745 0.115 80 / .35);margin:.4rem 0 .7rem}
+.rgen{font-family:"Saira Condensed",sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;padding:.3rem .75rem;border-radius:999px;border:0;background:transparent;color:oklch(0.86 0.04 250 / .8);cursor:pointer;transition:.18s}
+.rgen.on{background:linear-gradient(180deg,var(--brass-br),var(--brass));color:var(--night);box-shadow:inset 0 1px 0 #fff7}
+.rgen:not(.on):hover{color:#fff}
+.rgen-pane[hidden]{display:none}
 .rlabel{font-family:"JetBrains Mono";font-size:.8rem;color:oklch(0.8 0.03 250)}
 
 /* scope (T03) */
@@ -430,9 +435,19 @@ body{top:0 !important} body > .skiptranslate{display:none !important} .goog-te-b
     <div class="ratios">
       <div class="ratiocard def" data-rv>
         <div class="rt">Defensive ratio</div>
-        <div class="rbar"><i class="i" style="flex:70">70% INF</i><i class="c" style="flex:30">30% CAV</i></div>
-        <div class="rbar"><i class="i" style="flex:60">60% INF</i><i class="c" style="flex:40">40% CAV</i></div>
-        <div class="rlabel">70 / 30 / 0 or 60 / 40 / 0 (inf / cav / arc)</div>
+        <div class="rgen-toggle" role="tablist" aria-label="Game generation">
+          <button type="button" class="rgen on" data-rgen="main" aria-pressed="true">Main</button>
+          <button type="button" class="rgen" data-rgen="1904" aria-pressed="false">1904</button>
+        </div>
+        <div class="rgen-pane" data-rgen-pane="main">
+          <div class="rbar"><i class="i" style="flex:70">70% INF</i><i class="c" style="flex:30">30% CAV</i></div>
+          <div class="rbar"><i class="i" style="flex:60">60% INF</i><i class="c" style="flex:40">40% CAV</i></div>
+          <div class="rlabel">70 / 30 / 0 or 60 / 40 / 0 (inf / cav / arc) - bread and butter for holding a wall.</div>
+        </div>
+        <div class="rgen-pane" data-rgen-pane="1904" hidden>
+          <div class="rbar"><i class="i" style="flex:60">60% INF</i><i class="c" style="flex:20">20% CAV</i><i class="a" style="flex:20">20% ARC</i></div>
+          <div class="rlabel">60 / 20 / 20 (inf / cav / arc) - bread and butter for holding a wall in this generation.</div>
+        </div>
       </div>
       <div class="ratiocard off d1" data-rv>
         <div class="rt">Offensive ratio</div>
@@ -653,6 +668,15 @@ if(!matchMedia('(prefers-reduced-motion:reduce)').matches){
   document.querySelectorAll('.hero, .dark, .fin').forEach(sec=>{const n=sec.classList.contains('hero')?14:6;
     for(let i=0;i<n;i++){const e=document.createElement('span');e.className='ash';e.style.left=(Math.random()*100)+'%';e.style.animationDuration=(5+Math.random()*6)+'s';e.style.animationDelay=(-Math.random()*8)+'s';const s=.6+Math.random()*1.4;e.style.width=e.style.height=(3*s)+'px';sec.appendChild(e);}});
 }
+// Defensive ratio: Main | 1904 generation toggle
+document.querySelectorAll('.ratiocard.def').forEach(function(box){
+  var btns=box.querySelectorAll('.rgen'),panes=box.querySelectorAll('.rgen-pane');
+  btns.forEach(function(b){b.addEventListener('click',function(){
+    var k=b.dataset.rgen;
+    btns.forEach(function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on);});
+    panes.forEach(function(p){p.hidden=p.dataset.rgenPane!==k;});
+  });});
+});
 </script>
 <script>
 (function(){
